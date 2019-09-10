@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="https://www.thymeleaf.org">
+<head>
+    <title>Регистрация пользователя</title>
+</head>
+<body>
+<h1>Регистрация пользователя</h1>
+<div th:if="${message}">
+    <div th:text="${message}"></div>
+</div>
+<br/>
+<form th:action="@{/registration}" method="post">
+    <div><label> Имя пользователя : <input type="text" name="username"/></label></div>
+    <br/>
+    <div><label> Пароль: <input type="password" name="password"/></label></div>
+    <br/>
+    <table>
+        <tr>
+            <td>Роль:</td>
+            <td>
+                <select name="role">
+                    <option th:each="role : ${roles}"
+                            th:value="${role.id}"
+                            th:utext="${role.name}">
+                    </option>
+                </select>
+            </td>
+        </tr>
+    </table>
+    <br/>
+    <div><input type="submit" value="Зарегистрироваться"/></div>
+</form>
+<br/>
+<p><a th:href="@{/login}">Войти</a></p>
+</body>
+</html>

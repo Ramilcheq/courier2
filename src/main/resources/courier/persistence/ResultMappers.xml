@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="resultMappers">
+    <resultMap id="taskMap" type="courier.domain.Task">
+        <id property="id" column="task_id"/>
+        <result property="orderId" column="order_id"/>
+        <result property="taskDate" column="task_date"/>
+    </resultMap>
+    <resultMap id="userMap" type="courier.domain.User">
+        <id property="id" column="user_id"/>
+        <result property="username" column="user_login"/>
+        <result property="password" column="user_password"/>
+        <association property="role" column="role_id" select="courier.persistence.UserMapper.getRole"/>
+    </resultMap>
+    <resultMap id="roleMap" type="courier.domain.Role">
+        <id property="id" column="role_id"/>
+        <result property="name" column="role_name"/>
+    </resultMap>
+</mapper>

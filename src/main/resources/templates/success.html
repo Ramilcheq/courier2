@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <title>Успех</title>
+</head>
+<body>
+<h2>
+    <div th:if="${message}">
+        <div th:text="${message}"></div>
+    </div>
+</h2>
+<form th:action="${address}">
+    <input type="submit" th:value="${label}"/>
+</form>
+</body>
+</html>

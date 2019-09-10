@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="courier.persistence.TaskMapper">
+    <select id="getTask" resultMap="resultMappers.taskMap">
+        SELECT task_id, order_id, task_date
+        FROM courier.task
+        WHERE order_id = #{orderId}
+    </select>
+
+    <select id="getAllTasks" resultMap="resultMappers.taskMap">
+        SELECT task_id, order_id, task_date
+        FROM courier.task
+    </select>
+
+    <insert id="addTask" parameterType="java.lang.Long">
+        INSERT INTO courier.task (order_id)
+        VALUES (#{orderId})
+    </insert>
+
+    <delete id="deleteTask">
+        DELETE
+        FROM courier.task
+        WHERE task_id = #{taskId}
+    </delete>
+</mapper>

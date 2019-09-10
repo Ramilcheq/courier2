@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="courier.persistence.UserMapper">
+    <select id="getUser" resultMap="resultMappers.userMap">
+        SELECT user_id, user_login, user_password, role_id
+        FROM courier.users
+        WHERE user_login = #{username}
+    </select>
+    <select id="getRoles" resultType="courier.domain.Role">
+        SELECT role_id, role_name
+        FROM courier.role
+    </select>
+    <select id="getRole" parameterType="java.lang.Integer" resultMap="resultMappers.roleMap" >
+        SELECT role_id, role_name
+        from courier.role
+        where role_id = #{roleId}
+    </select>
+    <insert id="save"> --parameterType="courier.domain.User" useGeneratedKeys="true" keyProperty="id"
+        INSERT INTO courier.users (user_login, user_password, role_id)
+        VALUES (#{username}, #{password}, #{roleId})
+    </insert>
+</mapper>
